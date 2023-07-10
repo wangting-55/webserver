@@ -96,7 +96,14 @@ EPOLLPRI：表示有紧急数据可读
 EPOLLERR：表示发生错误
 EPOLLHUP：表示文件描述符被挂起
 EPOLLET：表示将epoll设置为边缘触发模式
-EPOLLONESHOT：表示将事件设置为一次性事件*/
+EPOLLONESHOT：表示将事件设置为一次性事件
+
+typedef union epoll_data {
+    void *ptr;
+    int fd;
+    uint32_t u32;
+    uint64_t u64;
+} epoll_data_t;*/
 //将内核事件表注册读事件，ET模式，选择开启EPOLLONESHOT
 void addfd(int epollfd, int fd, bool one_shot, int TRIGMode)
 {
