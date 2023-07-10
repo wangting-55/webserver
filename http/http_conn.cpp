@@ -89,7 +89,14 @@ int setnonblocking(int fd)
     fcntl(fd, F_SETFL, new_option);
     return old_option;
 }
-
+/*EPOLLIN：表示对应的文件描述符上有数据可读
+EPOLLOUT：表示对应的文件描述符上可以写入数据
+EPOLLRDHUP：表示对端已经关闭连接，或者关闭了写操作端的写入
+EPOLLPRI：表示有紧急数据可读
+EPOLLERR：表示发生错误
+EPOLLHUP：表示文件描述符被挂起
+EPOLLET：表示将epoll设置为边缘触发模式
+EPOLLONESHOT：表示将事件设置为一次性事件*/
 //将内核事件表注册读事件，ET模式，选择开启EPOLLONESHOT
 void addfd(int epollfd, int fd, bool one_shot, int TRIGMode)
 {
